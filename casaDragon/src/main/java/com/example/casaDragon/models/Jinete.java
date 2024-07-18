@@ -1,8 +1,10 @@
 package com.example.casaDragon.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tabla_jinete")
@@ -14,7 +16,7 @@ public class Jinete {
     private Integer id;
 
     @Column(name = "nombreJinete")
-    private String nombres;
+    private String nombre;
 
     @Column (name = "edadJinete")
     private Integer edad;
@@ -22,15 +24,21 @@ public class Jinete {
     @Column (name= "fechaMontura")
     private LocalDate fechaMontura;
 
-    @ManyToMany
-    Dragon Dragon;
+    @OneToMany(mappedBy = "jinete")
+    @JsonManagedReference
+    private List<Dragon> dragones;
+
+    @OneToMany(mappedBy = "jinete")
+    @JsonManagedReference
+    private List<Aliado>aliados;
+
 
     public Jinete() {
     }
 
-    public Jinete(Integer id, String nombres, Integer edad, LocalDate fechaMontura) {
+    public Jinete(Integer id, String nombre, Integer edad, LocalDate fechaMontura) {
         this.id = id;
-        this.nombres = nombres;
+        this.nombre = nombre;
         this.edad = edad;
         this.fechaMontura = fechaMontura;
     }
@@ -43,12 +51,12 @@ public class Jinete {
         this.id = id;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Integer getEdad() {
