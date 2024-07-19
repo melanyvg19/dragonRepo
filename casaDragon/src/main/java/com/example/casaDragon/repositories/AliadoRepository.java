@@ -1,4 +1,4 @@
-package com.example.casaDragon.repositorios;
+package com.example.casaDragon.repositories;
 
 import com.example.casaDragon.models.Aliado;
 import org.springframework.data.jpa.repository.JpaRepository;

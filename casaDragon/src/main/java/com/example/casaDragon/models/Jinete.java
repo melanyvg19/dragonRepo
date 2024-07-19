@@ -1,5 +1,6 @@
 package com.example.casaDragon.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -22,7 +23,8 @@ public class Jinete {
     private Integer edad;
 
     @Column (name= "fechaMontura")
-    private LocalDate fechaMontura;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate fechaMontura; // dia-mes-año
 
     @OneToMany(mappedBy = "jinete")
     @JsonManagedReference
